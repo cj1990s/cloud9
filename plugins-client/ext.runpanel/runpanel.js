@@ -45,6 +45,7 @@ module.exports = ext.register("ext/runpanel/runpanel", {
     },
 
     hook : function(){
+        return;
         if (ide.readonly)
             return;
         var _self = this;

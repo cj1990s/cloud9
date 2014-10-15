@@ -44,8 +44,8 @@ define(function(require, exports, module) {
 
             var c = 0;
             menus.addItemByPath("Help/About", new apf.item({ onclick : function(){ _self.showAbout(); }}), c += 100);
-            menus.addItemByPath("Help/IDE Status", new apf.item({ onclick : function(){window.open('http://status.c9.io'); }}), c += 100);
-            var mnuChangelog = menus.addItemByPath("Help/Changelog", new apf.item({ onclick : function(){ window.open('http://c9.io/site/tag/changelog/'); }}), c += 100);
+            //menus.addItemByPath("Help/IDE Status", new apf.item({ onclick : function(){window.open('http://status.c9.io'); }}), c += 100);
+            //mnuChangelog = menus.addItemByPath("Help/Changelog", new apf.item({ onclick : function(){ window.open('http://c9.io/site/tag/changelog/'); }}), c += 100);
 
             menus.addItemByPath("Help/~", new apf.divider(), c += 100);
             //menus.addItemByPath("Help/Documentation", new apf.item({ onclick : function(){ window.open('https://docs.c9.io') }}), c += 100);
@@ -58,7 +58,7 @@ define(function(require, exports, module) {
             ide.addEventListener("hook.ext/guidedtour/guidedtour", function(c, e) {
                 menus.addItemByPath("Help/Take a Guided Tour", new apf.item({ onclick : function(){ e.ext.launchGT(); }}), c);
             }.bind(this, c += 100));
-            menus.addItemByPath("Help/~", new apf.divider(), c += 100);
+            /*menus.addItemByPath("Help/~", new apf.divider(), c += 100);
 
             menus.addItemByPath("Help/Support/", null, c += 100);
             menus.addItemByPath("Help/~", new apf.divider(), c += 100);
@@ -77,35 +77,7 @@ define(function(require, exports, module) {
             menus.addItemByPath("Help/Get in Touch/Blog", new apf.item({ onclick : function(){ window.open('http://blog.c9.io/'); }}), c += 100);
             menus.addItemByPath("Help/Get in Touch/Twitter (for Cloud9 IDE support)", new apf.item({ onclick : function(){ window.open('https://twitter.com/#!/C9Support'); }}), c += 100);
             menus.addItemByPath("Help/Get in Touch/Twitter (for general Cloud9 tweets)", new apf.item({ onclick : function(){ window.open('https://twitter.com/#!/cloud9ide'); }}), c += 100);
-            menus.addItemByPath("Help/Get in Touch/Facebook", new apf.item({ onclick : function(){ window.open('https://www.facebook.com/Cloud9IDE'); }}), c += 100);
-
-            if (window.cloud9config.hosted || (ide.local && ide.onLine)) {
-                var blogURL = window.location.protocol + "//" + window.location.host + "/site/?json=get_tag_posts&tag_slug=changelog&count=1";
-
-                apf.ajax(blogURL, {
-                    method: "GET",
-                    contentType: "application/json",
-                    callback: function(data, state) {
-                        if (state == apf.SUCCESS) {
-                            if (data !== undefined) {
-                                var latestDate = "";
-
-                                try {
-                                    // fixes a potential issue with a stupid "WP Super Cache" comment
-                                    var jsonBlog = JSON.parse(data.replace(/<!-- .+? -->/, ""));
-                                    
-                                    // date format is 2012-11-06 21:41:07; convert it to something better lookin'
-                                    latestDate = " (" + jsonBlog.posts[0].date.split(" ")[0].replace(/-/g, ".") + ")";
-                                } catch (e) {
-                                    console.error("Changelog JSON parse failed: " + e);
-                                }
-
-                                mnuChangelog.setAttribute("caption",  "Changelog" + latestDate);
-                            }
-                        }
-                    }
-                });
-            }
+            menus.addItemByPath("Help/Get in Touch/Facebook", new apf.item({ onclick : function(){ window.open('https://www.facebook.com/Cloud9IDE'); }}), c += 100);*/
         },
 
         init: function(amlNode) {

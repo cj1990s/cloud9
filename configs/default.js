@@ -183,7 +183,13 @@ var config = [
     },
     "./cloud9.eventbus",
     "./cloud9.process-manager",
-    "./cloud9.routes",
+    {
+        packagePath: "./cloud9.routes",
+        username: argv.username,
+        password: argv.password,
+        key: argv.key,
+        secret: argv.secret
+    },
     "./cloud9.run.shell",
     {
         packagePath: "./cloud9.run.node",
@@ -227,13 +233,5 @@ var config = [
     "./cloud9.ide.state",
     "./cloud9.ide.watcher"
 ];
-
-if (useAuth) {
-    config.push({
-        packagePath: "./cloud9.connect.basic-auth",
-        username: argv.username,
-        password: argv.password
-    });
-}
 
 module.exports = config;

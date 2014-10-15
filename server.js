@@ -26,6 +26,13 @@ title_parts.forEach(function(element, index, array) {
 });
 process.title = title_parts.join(' ');
 
+/* C9 errors out on Running, we need to understand this better */
+process.on('uncaughtException', function (err) {
+  console.log(err.stack);
+  console.dir(err);
+  process.exit(-1);
+});
+
 var debug = false;
 var packed = false;
 var packedName = "";
@@ -96,26 +103,26 @@ for (var p = 2; p < process.argv.length; p++) {
 }
 
 if (debug == false && packed == false)
-	boot();
+  boot();
 
 function boot() {
-	var configPath = path.resolve(__dirname, "./configs/", configName);
-	var plugins = require(configPath);
+  var configPath = path.resolve(__dirname, "./configs/", configName);
+  var plugins = require(configPath);
 
-	// server plugins
-	plugins.forEach(function(plugin) {
-	   if (plugin.packagePath && /\.\/cloud9.core$/.test(plugin.packagePath)) {
-	       plugin.debug = debug;
-	       plugin.packed = packed;
-	       plugin.packedName = packedName;
-	   }
-	});
+  // server plugins
+  plugins.forEach(function(plugin) {
+     if (plugin.packagePath && /\.\/cloud9.core$/.test(plugin.packagePath)) {
+         plugin.debug = debug;
+         plugin.packed = packed;
+         plugin.packedName = packedName;
+     }
+  });
 
   architect.createApp(architect.resolveConfig(plugins, __dirname + "/plugins-server"), function (err, app) {
-	   if (err) {
-	       console.error("While starting the '%s':", configPath);
-	       throw err;
-	   }
-	   console.log("Started '%s'!", configPath);
-	});
+     if (err) {
+         console.error("While starting the '%s':", configPath);
+         throw err;
+     }
+     console.log("Started '%s'!", configPath);
+  });
 }

@@ -1,3 +1,24 @@
+# Changes in this fork
+
+This repo provides a patched version of Cloud9 IDE that works well under Docker environments. It is intended for use as the "IDE" in a whitebox integrated application environment.
+
+You can seamlessly logon to this IDE via query params authentication. By setting key and secret as arguments you can redirect the user to `http://ide-address/?key=SOMEKEY&secret=SOME_SECRET`. If these params are not provided then the authentication will fallback to Basic Authentication.
+
+## Modifications
+
+* C9 logo in the top right is removed
+* Various links in Help section that link to c9 pages are removed (the About must remain)
+* Preview and Run support is disabled
+
+## Supported arguments
+
+* --username: username to use for basic authentication
+* --password: password to use for basic authentication
+* --key: key to use for query params authentication
+* --secret: secret to use for query params authentiation
+
+# Issues
+
 **Issues on c9.io** If you have questions regarding the hosted service at [c9.io](http://c9.io)
 including issues with accounts or payments,
 please file them at [support.c9.io](http://support.cloud9ide.com/home) rather than as a

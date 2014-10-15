@@ -56,6 +56,7 @@ module.exports = ext.register($name, {
     },
 
     hook: function() {
+        return;
         var _self = this;
 
         settings.addSettings("General", markupSettings);
