@@ -622,6 +622,8 @@ module.exports = ext.register("ext/console/console", {
     },
 
     hook: function() {
+        return;
+        
         var _self = this;
 
         // Append the console window at the bottom below the tab
