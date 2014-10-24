@@ -33,6 +33,7 @@ module.exports = ext.register("ext/extmgr/extmgr", {
     nodes : [],
 
     hook : function(){
+        return
         var _self = this;
 
         menus.addItemByPath("Tools/~", new apf.divider(), 1000000);
